@@ -1,0 +1,7 @@
+node_modules
+bower
+public/js
+public/styles
+public/fonts
+.idea
+build

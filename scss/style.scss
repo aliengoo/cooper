@@ -1,0 +1,8 @@
+div {
+  &[ui-view] {
+    &.ng-enter {
+      animation: fadeIn 0.5s;
+      -webkit-animation: fadeIn 0.5s;
+    }
+  }
+}

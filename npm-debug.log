@@ -1,0 +1,99 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'cookier-parser' ]
+2 info using npm@2.0.0
+3 info using node@v0.10.35
+4 warn package.json cooper@1.0.0 No description
+5 warn package.json cooper@1.0.0 No repository field.
+6 warn package.json cooper@1.0.0 No README data
+7 verbose readDependencies using package.json deps
+8 verbose cache add [ 'cookier-parser', null ]
+9 verbose cache add spec="cookier-parser" args=["cookier-parser",null]
+10 verbose parsed spec { raw: 'cookier-parser',
+10 verbose parsed spec   scope: null,
+10 verbose parsed spec   name: 'cookier-parser',
+10 verbose parsed spec   rawSpec: '',
+10 verbose parsed spec   spec: '*',
+10 verbose parsed spec   type: 'range' }
+11 verbose parsed spec { raw: 'cookier-parser',
+11 verbose parsed spec   scope: null,
+11 verbose parsed spec   name: 'cookier-parser',
+11 verbose parsed spec   rawSpec: '',
+11 verbose parsed spec   spec: '*',
+11 verbose parsed spec   type: 'range' }
+12 verbose addNamed [ 'cookier-parser', '*' ]
+13 verbose addNamed [ null, '*' ]
+14 silly lockFile ecb475de-cookier-parser cookier-parser@*
+15 verbose lock cookier-parser@* /Users/gbunter/.npm/ecb475de-cookier-parser.lock
+16 silly addNameRange { name: 'cookier-parser', range: '*', hasData: false }
+17 verbose request on initialization, where is /cookier-parser
+18 verbose request after pass 1, where is /cookier-parser
+19 verbose request url raw /cookier-parser
+20 verbose request resolving registry [ 'https://registry.npmjs.org/', './cookier-parser' ]
+21 verbose request after pass 2, where is https://registry.npmjs.org/cookier-parser
+22 verbose request no auth needed
+23 info attempt registry request try #1 at 21:37:26
+24 verbose request id ad867e5d78fce404
+25 http request GET https://registry.npmjs.org/cookier-parser
+26 http 404 https://registry.npmjs.org/cookier-parser
+27 verbose headers { date: 'Tue, 20 Jan 2015 21:37:27 GMT',
+27 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+27 verbose headers   'content-type': 'application/json',
+27 verbose headers   'cache-control': 'max-age=0',
+27 verbose headers   'content-length': '52',
+27 verbose headers   'accept-ranges': 'bytes',
+27 verbose headers   via: '1.1 varnish',
+27 verbose headers   age: '0',
+27 verbose headers   'x-served-by': 'cache-ams4137-AMS',
+27 verbose headers   'x-cache': 'MISS',
+27 verbose headers   'x-cache-hits': '0',
+27 verbose headers   'x-timer': 'S1421789846.878782,VS0,VE381',
+27 verbose headers   'keep-alive': 'timeout=10, max=50',
+27 verbose headers   connection: 'Keep-Alive' }
+28 silly registry.get cb [ 404,
+28 silly registry.get   { date: 'Tue, 20 Jan 2015 21:37:27 GMT',
+28 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+28 silly registry.get     'content-type': 'application/json',
+28 silly registry.get     'cache-control': 'max-age=0',
+28 silly registry.get     'content-length': '52',
+28 silly registry.get     'accept-ranges': 'bytes',
+28 silly registry.get     via: '1.1 varnish',
+28 silly registry.get     age: '0',
+28 silly registry.get     'x-served-by': 'cache-ams4137-AMS',
+28 silly registry.get     'x-cache': 'MISS',
+28 silly registry.get     'x-cache-hits': '0',
+28 silly registry.get     'x-timer': 'S1421789846.878782,VS0,VE381',
+28 silly registry.get     'keep-alive': 'timeout=10, max=50',
+28 silly registry.get     connection: 'Keep-Alive' } ]
+29 silly lockFile ecb475de-cookier-parser cookier-parser@*
+30 silly lockFile ecb475de-cookier-parser cookier-parser@*
+31 verbose stack Error: 404 Not Found: cookier-parser
+31 verbose stack     at RegClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:259:14)
+31 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:198:65)
+31 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:236:22)
+31 verbose stack     at Request.emit (events.js:98:17)
+31 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1142:14)
+31 verbose stack     at Request.emit (events.js:117:20)
+31 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1096:12)
+31 verbose stack     at IncomingMessage.emit (events.js:117:20)
+31 verbose stack     at _stream_readable.js:944:16
+31 verbose stack     at process._tickCallback (node.js:442:13)
+32 verbose statusCode 404
+33 verbose pkgid cookier-parser
+34 verbose cwd /Users/gbunter/Projects/work-projects/cooper
+35 error Darwin 14.0.0
+36 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "install" "cookier-parser"
+37 error node v0.10.35
+38 error npm  v2.0.0
+39 error code E404
+40 error 404 Not Found: cookier-parser
+40 error 404
+40 error 404 'cookier-parser' is not in the npm registry.
+40 error 404 You should bug the author to publish it (or use the name yourself!)
+40 error 404 It was specified as a dependency of 'cooper'
+40 error 404
+40 error 404 Note that you can also install from a
+40 error 404 tarball, folder, http url, or git url.
+41 verbose exit [ 1, true ]
