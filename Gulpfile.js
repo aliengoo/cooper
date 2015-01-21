@@ -23,8 +23,8 @@ var config = {
 
 var vendorSrcFiles = [
   'bower/jquery/dist/jquery.min.js',
+  'bower/bootstrap/dist/js/bootstrap.min.js',
   'bower/lodash/dist/lodash.min.js',
-  'bower/foundation/js/foundation.min.js',
   'bower/moment/min/moment.min.js',
   'bower/angular/angular.min.js',
   'bower/angular-cookies/angular-cookies.min.js',
@@ -34,6 +34,7 @@ var vendorSrcFiles = [
   'bower/numeral/min/numeral.min.js',
   'bower/stringjs/lib/string.min.js',
   'bower/sweetalert/lib/sweet-alert.min.js',
+  'bower/angular-local-storage/dist/angular-local-storage.min.js',
   'bower/toastr/toastr.min.js'
 ];
 
@@ -45,7 +46,7 @@ var vendorSrcMaps = [
 ];
 
 var cssFiles = [
-  'bower/foundation/css/foundation.css',
+  'bower/bootstrap/dist/css/bootstrap.min.css',
   'bower/angular-loading-bar/build/loading-bar.min.css',
   'bower/animate.css/animate.min.css',
   'bower/fontawesome/css/font-awesome.min.css',
@@ -88,6 +89,16 @@ gulp.task('search-templates', function () {
   })).pipe(gulp.dest('./build'));
 });
 
+gulp.task('login-templates', function () {
+  return gulp.src([
+    './client/login/*.html'
+  ]).pipe(templateCache({
+    module: 'app.login',
+    root: 'login/',
+    filename: 'app-login-templates.js'
+  })).pipe(gulp.dest('./build'));
+});
+
 gulp.task('directive-templates', function () {
   return gulp.src([
     './client/directives/*.html',
@@ -102,6 +113,7 @@ gulp.task('directive-templates', function () {
 var templateJobs = [
   'home-templates',
   'search-templates',
+  'login-templates',
   'directive-templates'
 ];
 

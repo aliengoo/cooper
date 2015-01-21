@@ -13,9 +13,9 @@ describe('Home controller', function() {
     home = _$controller_('Home');
   }));
 
-  it('home should work', function() {
+  it('should be defined', function() {
 
-    expect(home.name).toBe('Home');
+    expect(home).toBeDefined();
 
   });
 

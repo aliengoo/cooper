@@ -1,12 +1,11 @@
 describe('Search controller', function() {
 
-  var $scope, $rootScope, search, $httpBackend;
+  var $scope, $rootScope, search, $httpBackend, mockSearchService;
 
   beforeEach(module('app.search'));
 
   beforeEach(inject(function($injector) {
     $httpBackend = $injector.get('$httpBackend');
-
   }));
 
   beforeEach(inject(function(_$rootScope_, _$controller_){
@@ -15,13 +14,21 @@ describe('Search controller', function() {
 
     $scope = $rootScope.$new();
 
-    search = _$controller_('Search');
+    mockSearchService = {
+      search : function(query, successFn, errorFn) {
+        successFn({
+          blah : 'blah'
+        });
+      }
+    };
+
+    search = _$controller_('Search', {
+      searchService : mockSearchService
+    });
   }));
 
-  it('Search should work', function() {
-
+  it('should be defined', function() {
     expect(search).toBeDefined();
   });
-
 
 });

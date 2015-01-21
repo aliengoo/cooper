@@ -2,43 +2,44 @@
 1 verbose cli [ '/usr/local/bin/node',
 1 verbose cli   '/usr/local/bin/npm',
 1 verbose cli   'install',
-1 verbose cli   'cookier-parser' ]
+1 verbose cli   'karma-growl-report',
+1 verbose cli   '--save-dev' ]
 2 info using npm@2.0.0
 3 info using node@v0.10.35
 4 warn package.json cooper@1.0.0 No description
 5 warn package.json cooper@1.0.0 No repository field.
 6 warn package.json cooper@1.0.0 No README data
 7 verbose readDependencies using package.json deps
-8 verbose cache add [ 'cookier-parser', null ]
-9 verbose cache add spec="cookier-parser" args=["cookier-parser",null]
-10 verbose parsed spec { raw: 'cookier-parser',
+8 verbose cache add [ 'karma-growl-report', null ]
+9 verbose cache add spec="karma-growl-report" args=["karma-growl-report",null]
+10 verbose parsed spec { raw: 'karma-growl-report',
 10 verbose parsed spec   scope: null,
-10 verbose parsed spec   name: 'cookier-parser',
+10 verbose parsed spec   name: 'karma-growl-report',
 10 verbose parsed spec   rawSpec: '',
 10 verbose parsed spec   spec: '*',
 10 verbose parsed spec   type: 'range' }
-11 verbose parsed spec { raw: 'cookier-parser',
+11 verbose parsed spec { raw: 'karma-growl-report',
 11 verbose parsed spec   scope: null,
-11 verbose parsed spec   name: 'cookier-parser',
+11 verbose parsed spec   name: 'karma-growl-report',
 11 verbose parsed spec   rawSpec: '',
 11 verbose parsed spec   spec: '*',
 11 verbose parsed spec   type: 'range' }
-12 verbose addNamed [ 'cookier-parser', '*' ]
+12 verbose addNamed [ 'karma-growl-report', '*' ]
 13 verbose addNamed [ null, '*' ]
-14 silly lockFile ecb475de-cookier-parser cookier-parser@*
-15 verbose lock cookier-parser@* /Users/gbunter/.npm/ecb475de-cookier-parser.lock
-16 silly addNameRange { name: 'cookier-parser', range: '*', hasData: false }
-17 verbose request on initialization, where is /cookier-parser
-18 verbose request after pass 1, where is /cookier-parser
-19 verbose request url raw /cookier-parser
-20 verbose request resolving registry [ 'https://registry.npmjs.org/', './cookier-parser' ]
-21 verbose request after pass 2, where is https://registry.npmjs.org/cookier-parser
+14 silly lockFile 95822d8b-karma-growl-report karma-growl-report@*
+15 verbose lock karma-growl-report@* /Users/gbunter/.npm/95822d8b-karma-growl-report.lock
+16 silly addNameRange { name: 'karma-growl-report', range: '*', hasData: false }
+17 verbose request on initialization, where is /karma-growl-report
+18 verbose request after pass 1, where is /karma-growl-report
+19 verbose request url raw /karma-growl-report
+20 verbose request resolving registry [ 'https://registry.npmjs.org/', './karma-growl-report' ]
+21 verbose request after pass 2, where is https://registry.npmjs.org/karma-growl-report
 22 verbose request no auth needed
-23 info attempt registry request try #1 at 21:37:26
-24 verbose request id ad867e5d78fce404
-25 http request GET https://registry.npmjs.org/cookier-parser
-26 http 404 https://registry.npmjs.org/cookier-parser
-27 verbose headers { date: 'Tue, 20 Jan 2015 21:37:27 GMT',
+23 info attempt registry request try #1 at 18:23:58
+24 verbose request id c6c109870e996c51
+25 http request GET https://registry.npmjs.org/karma-growl-report
+26 http 404 https://registry.npmjs.org/karma-growl-report
+27 verbose headers { date: 'Wed, 21 Jan 2015 18:23:58 GMT',
 27 verbose headers   server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
 27 verbose headers   'content-type': 'application/json',
 27 verbose headers   'cache-control': 'max-age=0',
@@ -46,14 +47,14 @@
 27 verbose headers   'accept-ranges': 'bytes',
 27 verbose headers   via: '1.1 varnish',
 27 verbose headers   age: '0',
-27 verbose headers   'x-served-by': 'cache-ams4137-AMS',
+27 verbose headers   'x-served-by': 'cache-lhr6330-LHR',
 27 verbose headers   'x-cache': 'MISS',
 27 verbose headers   'x-cache-hits': '0',
-27 verbose headers   'x-timer': 'S1421789846.878782,VS0,VE381',
+27 verbose headers   'x-timer': 'S1421864638.731410,VS0,VE153',
 27 verbose headers   'keep-alive': 'timeout=10, max=50',
 27 verbose headers   connection: 'Keep-Alive' }
 28 silly registry.get cb [ 404,
-28 silly registry.get   { date: 'Tue, 20 Jan 2015 21:37:27 GMT',
+28 silly registry.get   { date: 'Wed, 21 Jan 2015 18:23:58 GMT',
 28 silly registry.get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
 28 silly registry.get     'content-type': 'application/json',
 28 silly registry.get     'cache-control': 'max-age=0',
@@ -61,15 +62,15 @@
 28 silly registry.get     'accept-ranges': 'bytes',
 28 silly registry.get     via: '1.1 varnish',
 28 silly registry.get     age: '0',
-28 silly registry.get     'x-served-by': 'cache-ams4137-AMS',
+28 silly registry.get     'x-served-by': 'cache-lhr6330-LHR',
 28 silly registry.get     'x-cache': 'MISS',
 28 silly registry.get     'x-cache-hits': '0',
-28 silly registry.get     'x-timer': 'S1421789846.878782,VS0,VE381',
+28 silly registry.get     'x-timer': 'S1421864638.731410,VS0,VE153',
 28 silly registry.get     'keep-alive': 'timeout=10, max=50',
 28 silly registry.get     connection: 'Keep-Alive' } ]
-29 silly lockFile ecb475de-cookier-parser cookier-parser@*
-30 silly lockFile ecb475de-cookier-parser cookier-parser@*
-31 verbose stack Error: 404 Not Found: cookier-parser
+29 silly lockFile 95822d8b-karma-growl-report karma-growl-report@*
+30 silly lockFile 95822d8b-karma-growl-report karma-growl-report@*
+31 verbose stack Error: 404 Not Found: karma-growl-report
 31 verbose stack     at RegClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:259:14)
 31 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:198:65)
 31 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:236:22)
@@ -81,16 +82,16 @@
 31 verbose stack     at _stream_readable.js:944:16
 31 verbose stack     at process._tickCallback (node.js:442:13)
 32 verbose statusCode 404
-33 verbose pkgid cookier-parser
+33 verbose pkgid karma-growl-report
 34 verbose cwd /Users/gbunter/Projects/work-projects/cooper
 35 error Darwin 14.0.0
-36 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "install" "cookier-parser"
+36 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "install" "karma-growl-report" "--save-dev"
 37 error node v0.10.35
 38 error npm  v2.0.0
 39 error code E404
-40 error 404 Not Found: cookier-parser
+40 error 404 Not Found: karma-growl-report
 40 error 404
-40 error 404 'cookier-parser' is not in the npm registry.
+40 error 404 'karma-growl-report' is not in the npm registry.
 40 error 404 You should bug the author to publish it (or use the name yourself!)
 40 error 404 It was specified as a dependency of 'cooper'
 40 error 404

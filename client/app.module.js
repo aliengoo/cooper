@@ -6,7 +6,8 @@
     'app.directives',
     'app.services',
     'app.home',
-    'app.search'
+    'app.search',
+    'app.login'
   ]);
 
 }());
