@@ -41,8 +41,7 @@ var vendorSrcFiles = [
 var vendorSrcMaps = [
   'bower/angular/angular.min.js.map',
   'bower/angular-cookies/angular-cookies.min.js.map',
-  'bower/angular-resource/angular-resource.min.js.map',
-  'bower/chartist/dist/chartist.min.js.map'
+  'bower/angular-resource/angular-resource.min.js.map'
 ];
 
 var cssFiles = [

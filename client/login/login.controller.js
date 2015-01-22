@@ -11,7 +11,9 @@
     vm.login = function(username, password) {
       authService.login(username, password).success(function(response) {
         vm.loginResponse = response;
-      }, $log.error);
+      }, function(error) {
+        $log(error);
+      });
 
     };
   }
