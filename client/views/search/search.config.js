@@ -9,7 +9,12 @@
     $stateProvider.state('search', {
       url  :'/search',
       controller : 'Search as vm',
-      templateUrl : 'search/search.html'
+      templateUrl : 'search/search.html',
+      resolve : {
+        authorized : ['stateAuthService', function(stateAuthService) {
+          return stateAuthService.checkAuthorization('search');
+        }]
+      }
     });
   }
 

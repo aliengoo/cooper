@@ -9,7 +9,12 @@
     $stateProvider.state('home', {
       url : '/',
       templateUrl : 'home/home.html',
-      controller : 'Home as vm'
+      controller : 'Home as vm',
+      resolve : {
+        authorized : ['stateAuthService', function(stateAuthService) {
+          return stateAuthService.checkAuthorization('home');
+        }]
+      }
     });
   }
 

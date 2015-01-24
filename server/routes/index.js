@@ -2,11 +2,11 @@
   'use strict';
 
   var motd = require('./motd');
-  var login = require('./login');
+  var security = require('./security');
 
   module.exports = function(app) {
     motd(app);
-    login(app);
+    security(app);
   };
 
 }());

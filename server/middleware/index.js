@@ -7,8 +7,13 @@
   var expressJwt = require('express-jwt');
 
   module.exports = function(app) {
+    //require('./parseAuthorizationBearer')(app);
+
+
+
     require('../data')(app);
     require('../security')(app);
+
     var authentication = require('./authentication')(app);
 
     app.use(cors());
@@ -18,6 +23,8 @@
     app.use(expressJwt({
       secret: app.get('jwtSecret')
     }).unless({path: ['/login', '/motd']}));
+
+
 
     app.use(function (err, req, res, next) {
       if (err.name === 'UnauthorizedError') {

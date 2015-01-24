@@ -13,6 +13,30 @@
     return exports;
 
     function authenticateUser(req, res, next) {
+
+      function checkCredentialsHandler(err, authenticationResult) {
+        if (err && authenticationResult) {
+          res.status(401).send(authenticationResult);
+        } else {
+          if (authenticationResult) {
+            authenticationResult.revoked = false;
+
+            var token = new Token(authenticationResult);
+
+            token.save(function(err, result) {
+              if (err) {
+                res.status(500).send('an error occurred');
+              } else {
+                res.authenticationResult = result;
+                next();
+              }
+            });
+          } else {
+            res.status(400).end('Username or password incorrect');
+          }
+        }
+      }
+
       if (req.method !== 'POST') {
         res.status(400).end('Method not supported')
       }
@@ -22,31 +46,7 @@
         if (!body.username || !body.password) {
           res.status(400).end('Must provide username or password');
         } else {
-
-          checkCredentials(body, function (err, authenticationResult) {
-
-            if (err && authenticationResult) {
-              res.status(401).send(authenticationResult);
-            } else {
-              if (authenticationResult) {
-                authenticationResult.revoked = false;
-
-                var token = new Token(authenticationResult);
-
-                token.save(function(err, result) {
-                  if (err) {
-                    res.status(500).send('an error occurred');
-                  } else {
-                    res.authenticationResult = result;
-                    next();
-                  }
-                });
-              } else {
-                res.status(400).end('Username or password incorrect');
-              }
-            }
-
-          });
+          checkCredentials(body, checkCredentialsHandler);
         }
       }
     }

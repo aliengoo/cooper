@@ -7,15 +7,15 @@
 
   function stateAuthService($q, $http, $location, apiUrl) {
     var exports = {
-      checkStateAuthorization : checkStateAuthorization
+      checkAuthorization : checkAuthorization
     };
 
     return exports;
 
-    function checkStateAuthorization(stateName) {
+    function checkAuthorization(stateName) {
       var defer = $q.defer();
 
-      $http.get(apiUrl + 'check-state-authorization', {
+      $http.get(apiUrl + 'check-authorization', {
         data : {
           stateName : stateName
         }
@@ -25,6 +25,7 @@
         }
       }).error(function(data, status) {
         if (status === 401) {
+          defer.reject();
           $location.url('/login');
         }
       });
