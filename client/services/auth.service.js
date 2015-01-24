@@ -3,9 +3,9 @@
 
   angular.module('app.services').factory('authService', authService);
 
-  authService.$inject = ['$http'];
+  authService.$inject = ['$http', 'apiUrl'];
 
-  function authService($http) {
+  function authService($http, apiUrl) {
     var exports = {
       login : login
     };
@@ -13,7 +13,7 @@
     return exports;
 
     function login(username, password) {
-      return $http.post('/login', {
+      return $http.post(apiUrl + 'login', {
         username : username,
         password : password
       });

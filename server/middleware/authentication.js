@@ -29,19 +29,18 @@
               res.status(401).send(authenticationResult);
             } else {
               if (authenticationResult) {
+                authenticationResult.revoked = false;
 
-                if (req.ip) {
-                  authenticationResult.ip = req.ip;
-                } else if (req.ips && req.ips.length > 0){
-                  authenticationResult.ip = req.ips[req.ips.length - 1];
-                }
+                var token = new Token(authenticationResult);
 
-                var token = new Token({
-
+                token.save(function(err, result) {
+                  if (err) {
+                    res.status(500).send('an error occurred');
+                  } else {
+                    res.authenticationResult = result;
+                    next();
+                  }
                 });
-
-                res.authenticationResult = authenticationResult;
-                next();
               } else {
                 res.status(400).end('Username or password incorrect');
               }
@@ -56,7 +55,7 @@
       var authenticationResult = {
         valid: false,
         token: undefined,
-        user: undefined
+        username: undefined
       };
 
       function authenticationProviderCallback(err, user) {
@@ -70,10 +69,7 @@
 
         } else {
 
-          authenticationResult.user = {
-            username : credentials.username,
-            name : user.gecos
-          };
+          authenticationResult.username = credentials.username;
           authenticationResult.valid = true;
           authenticationResult.token = jwt.sign(
             {

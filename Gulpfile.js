@@ -7,6 +7,7 @@ var gulp = require('gulp'),
   clean = require('gulp-clean'),
   browserSync = require('browser-sync'),
   karma = require('karma').server,
+  gulpDebug = require('gulp-debug'),
   runSequence = require('run-sequence');
 
 var config = {
@@ -26,11 +27,11 @@ var vendorSrcFiles = [
   'bower/bootstrap/dist/js/bootstrap.min.js',
   'bower/lodash/dist/lodash.min.js',
   'bower/moment/min/moment.min.js',
-  'bower/angular/angular.min.js',
-  'bower/angular-cookies/angular-cookies.min.js',
+  'bower/angular/angular.js',
+  'bower/angular-cookies/angular-cookies.js',
   'bower/angular-loading-bar/build/loading-bar.min.js',
-  'bower/angular-resource/angular-resource.min.js',
-  'bower/angular-ui-router/release/angular-ui-router.min.js',
+  'bower/angular-resource/angular-resource.js',
+  'bower/angular-ui-router/release/angular-ui-router.js',
   'bower/numeral/min/numeral.min.js',
   'bower/stringjs/lib/string.min.js',
   'bower/sweetalert/lib/sweet-alert.min.js',
@@ -41,7 +42,8 @@ var vendorSrcFiles = [
 var vendorSrcMaps = [
   'bower/angular/angular.min.js.map',
   'bower/angular-cookies/angular-cookies.min.js.map',
-  'bower/angular-resource/angular-resource.min.js.map'
+  'bower/angular-resource/angular-resource.min.js.map',
+  'bower/jquery/dist/jquery.min.map'
 ];
 
 var cssFiles = [
@@ -54,13 +56,14 @@ var cssFiles = [
 ];
 
 var appSrcFiles = [
-  'client/**/*.module.js',
-  'client/**/**/*.module.js',
+  'client/services/*.module.js',
+  'client/directives/*.module.js',
+  'client/views/**/*.module.js',
+  'client/views/**/*.js',
+  'client/services/**/*.js',
+  'client/directives/**/*.js',
   'client/app.module.js',
-  'client/*.js',
-  'client/**/*.js',
-  'client/**/**/*.js',
-  'client/**/**/**/*.js',
+  'client/app.config.js',
   'build/*.js'
 ];
 
@@ -70,8 +73,8 @@ gulp.task('clean', function () {
 
 gulp.task('home-templates', function () {
   return gulp.src([
-    './client/home/*.html'
-  ]).pipe(templateCache({
+    './client/views/home/*.html'
+  ]).pipe(gulpDebug({title : 'homeHtml'})).pipe(templateCache({
     module: 'app.home',
     root: 'home/',
     filename: 'app-home-templates.js'
@@ -80,8 +83,8 @@ gulp.task('home-templates', function () {
 
 gulp.task('search-templates', function () {
   return gulp.src([
-    './client/search/*.html'
-  ]).pipe(templateCache({
+    './client/views/search/*.html'
+  ]).pipe(gulpDebug({title : 'searchHtml'})).pipe(templateCache({
     module: 'app.search',
     root: 'search/',
     filename: 'app-search-templates.js'
@@ -90,8 +93,8 @@ gulp.task('search-templates', function () {
 
 gulp.task('login-templates', function () {
   return gulp.src([
-    './client/login/*.html'
-  ]).pipe(templateCache({
+    './client/views/login/*.html'
+  ]).pipe(gulpDebug({title : 'loginHtml'})).pipe(templateCache({
     module: 'app.login',
     root: 'login/',
     filename: 'app-login-templates.js'
@@ -137,6 +140,7 @@ gulp.task('vendor-sourcemaps', function () {
 
 gulp.task('app', function () {
   gulp.src(appSrcFiles)
+    .pipe(gulpDebug({title : 'concat'}))
     .pipe(concat('client.js', {newline: ';'}))
     .pipe(gulp.dest('./public/js'));
 });

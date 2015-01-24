@@ -23,7 +23,6 @@
       default : false
     },
     ip : {
-      required : true,
       type : String
     }
   });

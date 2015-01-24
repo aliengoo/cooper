@@ -8,7 +8,7 @@
   function config($stateProvider) {
     $stateProvider.state('login', {
       url : '/login',
-      controller : 'Login in vm',
+      controller : 'Login as vm',
       templateUrl : 'login/login.html'
     });
   }

@@ -1,6 +1,6 @@
 describe('Login controller', function () {
 
-  var $rootScope, login, mockAuthServiceSpy, mockLogSpy, $controller, $q, $log;
+  var $rootScope, login, mockAuthServiceSpy, mockLogSpy, mockStateSpy, $controller, $q, $log;
 
   beforeEach(module('app.login'));
 
@@ -8,9 +8,11 @@ describe('Login controller', function () {
 
     mockAuthServiceSpy = jasmine.createSpyObj('mockAuthService', ["login"]);
     mockLogSpy = jasmine.createSpyObj('mockLog', ['error']);
+    mockStateSpy = jasmine.createSpyObj('mockState', ['go']);
 
     $provide.value('authService', mockAuthServiceSpy);
     $provide.value('$log', mockLogSpy);
+    $provide.value('$state', mockStateSpy);
   }));
 
 
@@ -49,7 +51,20 @@ describe('Login controller', function () {
     $rootScope.$apply();
 
     expect(mockLogSpy.error).toHaveBeenCalled();
-    expect(login.loginError).toEqual(errorResponse);
+    expect(login.loginFailed).toBeTruthy();
+  });
+
+  it('when credential are correct, change state to home', function () {
+
+    mockAuthServiceSpy.login.and.returnValue($q.when({
+      stuff : 'happened'
+    }));
+
+    login.login('username', 'password');
+
+    $rootScope.$apply();
+
+    expect(mockStateSpy.go).toHaveBeenCalledWith('home');
   });
 
 });
