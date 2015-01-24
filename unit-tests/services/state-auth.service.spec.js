@@ -37,7 +37,7 @@ describe('stateAuthService', function () {
 
     $httpBackend.flush();
 
-    expect(success).toHaveBeenCalledWith("/login");
+    expect(success).toHaveBeenCalled();
 
   });
 

@@ -5,3 +5,4 @@ public/styles
 public/fonts
 .idea
 build
+npm-debug.log

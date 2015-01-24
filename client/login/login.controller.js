@@ -9,12 +9,12 @@
     var vm = this;
 
     vm.login = function(username, password) {
-      authService.login(username, password).success(function(response) {
+      authService.login(username, password).then(function(response) {
         vm.loginResponse = response;
       }, function(error) {
-        $log(error);
+        vm.loginError = error;
+        $log.error(error);
       });
-
     };
   }
 
