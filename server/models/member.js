@@ -36,6 +36,6 @@
     }
   });
 
-  module.exports.member = mongoose.model('Member', memberSchema, 'members');
+  module.exports.Member = mongoose.model('Member', memberSchema, 'members');
 
 }());
