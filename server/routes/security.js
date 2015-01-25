@@ -8,7 +8,10 @@
 
     // requires the authentication middleware is used
     app.post('/login', function (req, res) {
-      res.status(200).send(res.authenticationResult);
+      res.status(200).send({
+        username : res.authenticationResult.username,
+        token : res.authenticationResult.token
+      });
     });
 
     app.get('/check-authorization', function (req, res) {

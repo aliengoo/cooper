@@ -7,10 +7,6 @@
   var expressJwt = require('express-jwt');
 
   module.exports = function(app) {
-    //require('./parseAuthorizationBearer')(app);
-
-
-
     require('../data')(app);
     require('../security')(app);
 

@@ -8,6 +8,9 @@
   function Login($log, $state, authService) {
     var vm = this;
 
+    vm.username = 'fred';
+    vm.password = 'trustno1';
+
     vm.login = function(username, password) {
       vm.loginFailed = false;
 

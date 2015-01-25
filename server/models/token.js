@@ -6,7 +6,12 @@
   var tokenSchema = new mongoose.Schema({
     token: {
       required: true,
-      type: String
+      type: String,
+      unique : true
+    },
+    salt : {
+      required : true,
+      type : String
     },
     username: {
       required: true,

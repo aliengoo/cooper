@@ -10,7 +10,7 @@ describe('stateAuthService', function () {
     $location = $injector.get('$location');
     apiUrl = _apiUrl_;
     stateAuthService = _stateAuthService_;
-    expectedUrl = apiUrl + 'check-state-authorization';
+    expectedUrl = apiUrl + 'check-authorization';
     checkStateAuthorizationHandler = $httpBackend.when('GET', expectedUrl);
   }));
 
@@ -20,7 +20,7 @@ describe('stateAuthService', function () {
     checkStateAuthorizationHandler.respond(401, '');
     spyOn($location, 'url');
 
-    stateAuthService.checkStateAuthorization('any');
+    stateAuthService.checkAuthorization('any');
 
     $httpBackend.flush();
 
@@ -33,7 +33,7 @@ describe('stateAuthService', function () {
 
     var success = jasmine.createSpy();
 
-    stateAuthService.checkStateAuthorization('any').then(success);
+    stateAuthService.checkAuthorization('any').then(success);
 
     $httpBackend.flush();
 

@@ -1,32 +1,52 @@
 (function () {
   'use strict';
 
-  angular.module('app.services').factory('authInterceptorService', authInterceptorService);
+  angular.module('app.services').provider('authInterceptorService', function () {
+    var pathsToExclude = [];
 
-  authInterceptorService.$inject = ['authTokenService'];
+    return {
+      excludePaths: function (exclusions) {
+        pathsToExclude = pathsToExclude.concat(exclusions);
+      },
 
-  function authInterceptorService(authTokenService) {
-    var exports = {
-      request : request
+      $get: function () {
+        return ['authTokenService', function (authTokenService) {
+          var exports = {
+            request: request
+          };
+
+          return exports;
+
+          // function definitions
+          function request(config) {
+
+            console.log('Hit');
+
+            var exit = false;
+
+            angular.forEach(pathsToExclude, function (excludedPath) {
+              if (config.url.indexOf(excludedPath) >= 0) {
+                exit = true;
+              }
+            });
+
+            if (exit) {
+              return config;
+            }
+
+            var token = authTokenService.get();
+
+            if (token) {
+              config.headers = config.headers || {};
+              config.headers.Authorization = 'Bearer ' + token.token;
+            }
+
+            return config;
+          }
+        }];
+      }
     };
+  });
 
-    return exports;
 
-    // function definitions
-    function request(config) {
-
-      if (config.url.indexOf('/login') >= 0) {
-        return config;
-      }
-
-      var token = authTokenService.get();
-
-      if (token) {
-        config.headers = config.headers || {};
-        config.headers.Authorization = 'Bearer ' + token.token;
-      }
-
-      return config;
-    }
-  }
 }());

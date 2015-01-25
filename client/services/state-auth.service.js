@@ -3,9 +3,9 @@
 
   angular.module('app.services').factory('stateAuthService', stateAuthService);
 
-  stateAuthService.$inject = ['$q', '$http', '$location', 'apiUrl'];
+  stateAuthService.$inject = ['$q', '$http', '$location', 'apiUrl', 'authTokenService'];
 
-  function stateAuthService($q, $http, $location, apiUrl) {
+  function stateAuthService($q, $http, $location, apiUrl, authTokenService) {
     var exports = {
       checkAuthorization : checkAuthorization
     };
@@ -25,6 +25,7 @@
         }
       }).error(function(data, status) {
         if (status === 401) {
+          authTokenService.set();
           defer.reject();
           $location.url('/login');
         }
