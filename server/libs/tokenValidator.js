@@ -2,7 +2,7 @@
   'use strict';
 
   var Q = require('q');
-  var Token = require('./token').Token;
+  var tokenRepository = require('../data/repositories/tokenRepository')();
 
   module.exports = function () {
     var exports = {
@@ -14,16 +14,14 @@
     function isValid(token) {
       var defer = Q.defer();
 
-      Token.findByToken(token, function (err, token) {
-        if (err) {
-          defer.reject();
+      tokenRepository.findByToken(token).then(function() {
+        if (token && !token.revoked) {
+          defer.resolve();
         } else {
-          if (token && !token.revoked) {
-            defer.resolve();
-          } else {
-            defer.reject();
-          }
+          defer.reject();
         }
+      }, function() {
+          defer.reject();
       });
 
       return defer.promise;

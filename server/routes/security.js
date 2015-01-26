@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var tokenValidator = require('../security/tokenValidator')();
+  var tokenValidator = require('../libs/tokenValidator')();
 
   module.exports = function (app) {
     // requires the authentication middleware is used

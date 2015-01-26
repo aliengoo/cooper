@@ -1,13 +1,13 @@
 (function () {
   'use strict';
 
-  var Token = require('./token').Token;
+  var Token = require('../data/models/token').Token;
 
   module.exports = function (app) {
-    var authenticationProvider = require('../security/authenticationProvider')(
+    var authenticationProvider = require('../libs/authenticationProvider')(
       app.get('ldapOptions'));
 
-    var credentialsValidator = require('../security/credentialsValidator')(
+    var credentialsValidator = require('../libs/credentialsValidator')(
       app.get('jwtExpireInMinutes'),
       app.get('jwtSecret'),
       authenticationProvider);
