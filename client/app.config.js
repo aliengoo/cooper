@@ -3,12 +3,10 @@
 
   angular.module('app').config(config);
 
-  config.$inject = ['$urlRouterProvider', '$httpProvider', 'authInterceptorServiceProvider'];
+  config.$inject = ['$urlRouterProvider', '$httpProvider'];
 
-  function config($urlRouterProvider, $httpProvider, authInterceptorServiceProvider) {
+  function config($urlRouterProvider, $httpProvider) {
     $urlRouterProvider.otherwise('/');
-
-    authInterceptorServiceProvider.excludePaths(['/login']);
 
     $httpProvider.interceptors.push('authInterceptorService');
   }

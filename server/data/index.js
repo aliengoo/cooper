@@ -3,9 +3,7 @@
 
   var mongoose = require('mongoose');
 
-  module.exports = function(app) {
-    var databaseUri = app.get('databaseUri');
-
+  module.exports = function(databaseUri) {
     mongoose.connect(databaseUri);
 
     var db = mongoose.connection;
@@ -29,8 +27,6 @@
         process.exit(0);
       });
     });
-
-    app.set('db', db);
 
     return db;
   };

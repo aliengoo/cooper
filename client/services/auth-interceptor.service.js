@@ -1,52 +1,53 @@
 (function () {
   'use strict';
 
-  angular.module('app.services').provider('authInterceptorService', function () {
-    var pathsToExclude = [];
+  angular.module('app.services').factory('authInterceptorService', authInterceptorService);
 
-    return {
-      excludePaths: function (exclusions) {
-        pathsToExclude = pathsToExclude.concat(exclusions);
-      },
+  authInterceptorService.$inject = ['$q', '$injector', 'authTokenService'];
 
-      $get: function () {
-        return ['authTokenService', function (authTokenService) {
-          var exports = {
-            request: request
-          };
+  var pathsToExclude = ['/login'];
 
-          return exports;
-
-          // function definitions
-          function request(config) {
-
-            console.log('Hit');
-
-            var exit = false;
-
-            angular.forEach(pathsToExclude, function (excludedPath) {
-              if (config.url.indexOf(excludedPath) >= 0) {
-                exit = true;
-              }
-            });
-
-            if (exit) {
-              return config;
-            }
-
-            var token = authTokenService.get();
-
-            if (token) {
-              config.headers = config.headers || {};
-              config.headers.Authorization = 'Bearer ' + token.token;
-            }
-
-            return config;
-          }
-        }];
-      }
+  function authInterceptorService($q, $injector, authTokenService) {
+    var exports = {
+      request: request,
+      responseError : responseError
     };
-  });
+
+    return exports;
+
+    // function definitions
+    function request(config) {
+
+      var exit = false;
+
+      angular.forEach(pathsToExclude, function (excludedPath) {
+        if (config.url.indexOf(excludedPath) >= 0) {
+          exit = true;
+        }
+      });
+
+      if (exit) {
+        return config;
+      }
+
+      var token = authTokenService.get();
+
+      if (token) {
+        config.headers = config.headers || {};
+        config.headers.Authorization = 'Bearer ' + token.token;
+      }
+
+      return config;
+    }
+
+    function responseError(rejection) {
+      if (rejection.status === 401) {
+        $injector.get('$state').go('login');
+      }
+      return $q.reject(rejection);
+    }
+
+  }
 
 
 }());

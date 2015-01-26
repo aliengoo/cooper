@@ -1,39 +1,43 @@
 (function () {
   'use strict';
 
-  var Token = require('../models/token').Token;
-
+  var tokenValidator = require('../security/tokenValidator')();
 
   module.exports = function (app) {
-
     // requires the authentication middleware is used
-    app.post('/login', function (req, res) {
-      res.status(200).send({
-        username : res.authenticationResult.username,
-        token : res.authenticationResult.token
-      });
-    });
-
-    app.get('/check-authorization', function (req, res) {
-
-      if (req.headers.authorization) {
-        var token = req.headers.authorization.replace('Bearer ', '');
-
-        Token.findByToken(token, function (err, token) {
-          if (err) {
-            res.status(500).send('error');
-          } else {
-            if (token && !token.revoked) {
-              res.status(200).send();
-            } else {
-              res.status(401).send('invalid token');
-            }
-          }
-        });
-      } else {
-        res.status(401).send('nought');
-      }
-    });
+    app.post('/login', postLogin);
+    app.get('/check-authorization', getCheckAuthorization);
   };
+
+  /**
+   * Provide
+   *
+   * @param req
+   * @param res
+   */
+  function postLogin(req, res) {
+    res.status(200).send({
+      username: res.result.username,
+      token: res.result.token
+    });
+  }
+
+  /**
+   *
+   * @param req
+   * @param res
+   */
+  function getCheckAuthorization(req, res) {
+    if (req.token) {
+      tokenValidator.isValid(req.token).then(function () {
+        res.status(200).send();
+      }, function () {
+        res.status(401).send();
+      });
+
+    } else {
+      res.status(401).send();
+    }
+  }
 
 }());
