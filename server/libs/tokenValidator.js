@@ -2,7 +2,7 @@
   'use strict';
 
   var Q = require('q');
-  var Token = require('../models/token').Token;
+  var Token = require('./token').Token;
 
   module.exports = function () {
     var exports = {

@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var Token = require('../models/token').Token;
+  var Token = require('./token').Token;
 
   module.exports = function (app) {
     var authenticationProvider = require('../security/authenticationProvider')(

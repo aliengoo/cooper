@@ -6,7 +6,7 @@
   var app = express();
 
   // configuration
-  var db = require('./data')(process.env.DATABASE_URI);
+  var db = require('./data/connectToDb')(process.env.DATABASE_URI);
   app.set('db', db);
   app.set('jwtSecret', 'e3rh23ornweflnefkjniunjnjkb34fwef');
   app.set('jwtExpireInMinutes', 40320);
