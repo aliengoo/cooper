@@ -9,6 +9,7 @@
       findByToken : findByToken,
       revokePrevious : revokePrevious,
       findActiveTokens : findActiveTokens,
+      getPage : getPage,
       isActive : isActive
     };
 
@@ -109,8 +110,49 @@
       });
 
       return defer.promise;
-
     }
+
+    function getPage(page) {
+      if (!page) {
+        page = {
+          current : 1,
+          size : 10
+        };
+      }
+
+      var defer = Q.defer();
+
+      Token.find({}, {}, {}, function(err, tokens) {
+
+      });
+
+      return defer.promise;
+    }
+
+    function calculatePage(page, count) {
+      f (count < 1) {
+        page.current = 0;
+        page.totalPages = 0;
+      }
+
+      var remainder = count % page.size;
+
+      page.totalItems = count;
+      page.totalPages = parseInt((count / page.size) + (remainder > 0 ? 1 : 0));
+
+      page.current = page.current < 1 ? 1 : page.current;
+
+      if (page.totalPages < page.current) {
+        page.current = page.totalPages;
+      }
+
+      if (page.current > 0) {
+        page.skip = (page.current - 1) * page.size;
+      }
+
+      return page;
+    }
+
   };
 
 }());
