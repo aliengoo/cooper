@@ -4,7 +4,7 @@
   var Token = require('../data/models/token').Token;
 
   module.exports = function (app) {
-    var authenticationProvider = require('../libs/authenticationProvider')(
+    var authenticationProvider = require('../libs/ldapAuthenticationProvider')(
       app.get('ldapOptions'));
 
     var credentialsValidator = require('../libs/credentialsValidator')(

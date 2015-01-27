@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var tokenValidator = require('../libs/tokenValidator')();
+  var tokenRepository = require('../data/repositories/tokenRepository')();
 
   module.exports = function (app) {
     // requires the authentication middleware is used
@@ -29,7 +29,7 @@
    */
   function getCheckAuthorization(req, res) {
     if (req.token) {
-      tokenValidator.isValid(req.token).then(function () {
+      tokenRepository.isActive(req.token).then(function () {
         res.status(200).send();
       }, function () {
         res.status(401).send();

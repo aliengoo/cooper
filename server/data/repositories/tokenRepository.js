@@ -8,7 +8,8 @@
     var exports = {
       findByToken : findByToken,
       revokePrevious : revokePrevious,
-      findActiveTokens : findActiveTokens
+      findActiveTokens : findActiveTokens,
+      isActive : isActive
     };
 
     return exports;
@@ -22,7 +23,7 @@
       var defer = Q.defer();
 
       Token.findOne({
-        token : token
+        value : token
       }), function(err, token) {
         if (err) {
           defer.reject(err);
@@ -88,6 +89,27 @@
       });
 
       return defer.promise;
+    }
+
+    function isActive(token) {
+      var defer = Q.defer();
+
+      Token.findOne({
+        value : token
+      }, function(err, doc) {
+        if (err) {
+          defer.reject();
+        } else {
+          if (doc.revoked) {
+            defer.reject();
+          } else {
+            defer.resolve();
+          }
+        }
+      });
+
+      return defer.promise;
+
     }
   };
 
