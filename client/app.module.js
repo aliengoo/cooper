@@ -3,6 +3,7 @@
 
   angular.module('app', [
     'ui.router',
+    'btford.socket-io',
     'app.directives',
     'app.services',
     'app.home',

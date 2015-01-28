@@ -2,14 +2,14 @@
   'use strict';
 
   var cors = require('cors');
+  var express = require('express');
   var bodyParser = require('body-parser');
   var jwt = require('jsonwebtoken');
   var expressJwt = require('express-jwt');
   var tokenParser = require('./tokenParser');
 
   module.exports = function(app) {
-
-
+    app.use(express.static(__dirname + '/../../public'));
     app.use(cors());
     app.use(bodyParser.json());
     app.use(tokenParser);
@@ -19,7 +19,7 @@
 
     app.use(expressJwt({
       secret: app.get('jwtSecret')
-    }).unless({path: ['/login', '/motd']}));
+    }).unless({path: ['/login', '/motd', '/socket.io/socket.io.js']}));
 
     // catch all...
     app.use(function (err, req, res, next) {

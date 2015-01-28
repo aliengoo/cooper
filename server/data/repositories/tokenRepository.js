@@ -96,7 +96,7 @@
       var defer = Q.defer();
 
       Token.findOne({
-        value : token
+        token : token
       }, function(err, doc) {
         if (err) {
           defer.reject();
@@ -130,7 +130,7 @@
     }
 
     function calculatePage(page, count) {
-      f (count < 1) {
+      if (count < 1){
         page.current = 0;
         page.totalPages = 0;
       }

@@ -8,11 +8,23 @@ var gulp = require('gulp'),
   browserSync = require('browser-sync'),
   karma = require('karma').server,
   gulpDebug = require('gulp-debug'),
-  runSequence = require('run-sequence');
+  runSequence = require('run-sequence'),
+  url = require('url'),
+  proxy = require('proxy-middleware');
+
+var apiProxyOptions = url.parse('http://localhost:3003/');
+apiProxyOptions.route = '/';
+
+var socketProxyOptions = url.parse('ws://localhost:3000/socket.io/');
+socketProxyOptions.route = '/socket.io';
 
 var config = {
   server : {
-    baseDir : './public'
+    baseDir : './public',
+    middleware : [
+      proxy(apiProxyOptions),
+      proxy(socketProxyOptions)
+    ]
   },
   browser: "google chrome",
   injectChanges : true,
@@ -36,14 +48,17 @@ var vendorSrcFiles = [
   'bower/stringjs/lib/string.min.js',
   'bower/sweetalert/lib/sweet-alert.min.js',
   'bower/angular-local-storage/dist/angular-local-storage.min.js',
-  'bower/toastr/toastr.min.js'
+  'bower/toastr/toastr.min.js',
+  'bower/socket.io-client/socket.io.js',
+  'bower/angular-socket-io/socket.min.js'
 ];
 
 var vendorSrcMaps = [
   'bower/angular/angular.min.js.map',
   'bower/angular-cookies/angular-cookies.min.js.map',
   'bower/angular-resource/angular-resource.min.js.map',
-  'bower/jquery/dist/jquery.min.map'
+  'bower/jquery/dist/jquery.min.map',
+  'bower/angular-socket-io/socket.min.js.map'
 ];
 
 var cssFiles = [
@@ -64,6 +79,7 @@ var appSrcFiles = [
   'client/directives/**/*.js',
   'client/app.module.js',
   'client/app.config.js',
+  'client/app.controller.js',
   'build/*.js'
 ];
 

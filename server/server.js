@@ -24,8 +24,9 @@
   // register routes
   require('./routes')(app);
 
-  // start server
-  app.listen(3003, function () {
+  var server = require('./sockets/initSockets')(app);
+
+  server.listen(3003, function () {
     console.log('I\'m listening...');
   });
 }());
