@@ -5,6 +5,8 @@ var gulp = require('gulp'),
   templateCache = require('gulp-angular-templatecache'),
   sass = require('gulp-sass'),
   clean = require('gulp-clean'),
+  gulpIf = require('gulp-if'),
+  gulpLivereload= require('gulp-livereload'),
   browserSync = require('browser-sync'),
   karma = require('karma').server,
   gulpDebug = require('gulp-debug'),
@@ -17,6 +19,8 @@ apiProxyOptions.route = '/';
 
 var socketProxyOptions = url.parse('ws://localhost:3000/socket.io/');
 socketProxyOptions.route = '/socket.io';
+
+var useLiveReload = true;
 
 var config = {
   server : {
@@ -49,6 +53,8 @@ var vendorSrcFiles = [
   'bower/sweetalert/lib/sweet-alert.min.js',
   'bower/angular-local-storage/dist/angular-local-storage.min.js',
   'bower/toastr/toastr.min.js',
+  'bower/angular-bootstrap/ui-bootstrap-tpls.min.js',
+  'bower/angular-animate/angular-animate.min.js',
   'bower/socket.io-client/socket.io.js',
   'bower/angular-socket-io/socket.min.js'
 ];
@@ -158,7 +164,8 @@ gulp.task('app', function () {
   gulp.src(appSrcFiles)
     .pipe(gulpDebug({title : 'concat'}))
     .pipe(concat('client.js', {newline: ';'}))
-    .pipe(gulp.dest('./public/js'));
+    .pipe(gulp.dest('./public/js'))
+    .pipe(gulpIf(useLiveReload, gulpLivereload()));
 });
 
 gulp.task('sass', function () {
@@ -205,6 +212,21 @@ gulp.task('defaultWithBrowserSync', [
     'build',
     'browser-sync'],
   function () {
+    gulp.watch(['./scss/*.scss'], ['sass'])
+    gulp.watch(['./client/**/*.html'], ['build-templates']);
+    gulp.watch(appSrcFiles, ['build']);
+  });
+
+gulp.task('defaultWithLiveReload', [
+    'clean',
+    'move-fonts',
+    'vendor-css',
+    'vendor-scripts',
+    'vendor-sourcemaps',
+    'sass',
+    'build'],
+  function () {
+    gulpLivereload.listen();
     gulp.watch(['./scss/*.scss'], ['sass'])
     gulp.watch(['./client/**/*.html'], ['build-templates']);
     gulp.watch(appSrcFiles, ['build']);

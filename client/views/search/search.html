@@ -1,7 +1,15 @@
+<top-bar></top-bar>
+
 <div class="container">
   <header>
-    <h1>
-      Search
-    </h1>
+    <h3 class="page-header">
+      Advanced Search
+    </h3>
   </header>
+
+  <div class="form-group">
+    <input type="text" ng-model="vm.query.value" placeholder="Start typing a query..." name="query" id="query" class="form-control" typeahead="state for state in vm.states | filter:$viewValue | limitTo:8"/>
+  </div>
+
+
 </div>

@@ -6,6 +6,7 @@
   function Home() {
     var vm = this;
     vm.name = 'Home';
+    vm.show = false;
   }
 
 
