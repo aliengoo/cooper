@@ -3,10 +3,12 @@
 
   angular.module('app.search').controller('Search', Search);
 
-  Search.$inject = ['$log', 'searchService'];
+  Search.$inject = ['$log', 'searchService', 'socketService'];
 
-  function Search($log, searchService) {
+  function Search($log, searchService, socketService) {
     var vm = this;
+
+    socketService.emit('client-hello');
 
     vm.query = {};
 

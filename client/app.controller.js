@@ -3,11 +3,12 @@
 
   angular.module('app').controller('App', App);
 
-  App.$inject = ['$scope', 'socketService'];
+  App.$inject = ['$scope'];
 
-  function App($scope, socketService) {
-    socketService.on('socket:news', function (ev, data) {
-      console.log('There is news from the server');
+  function App($scope) {
+
+    $scope.$on('socket:news', function() {
+      console.log('There is newsqwdqwdqwd from the server');
     });
   }
 
