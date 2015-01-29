@@ -55,6 +55,8 @@ var vendorSrcFiles = [
   'bower/toastr/toastr.min.js',
   'bower/angular-bootstrap/ui-bootstrap-tpls.min.js',
   'bower/angular-animate/angular-animate.min.js',
+  'bower/angular-hotkeys/build/hotkeys.min.js',
+  'bower/angular-ui-utils/ui-utils.min.js',
   'bower/socket.io-client/socket.io.js',
   'bower/angular-socket-io/socket.min.js'
 ];
@@ -70,10 +72,11 @@ var vendorSrcMaps = [
 var cssFiles = [
   'bower/bootstrap/dist/css/bootstrap.min.css',
   'bower/angular-loading-bar/build/loading-bar.min.css',
-  'bower/animate.css/animate.min.css',
   'bower/fontawesome/css/font-awesome.min.css',
   'bower/sweetalert/lib/sweet-alert.css',
-  'bower/toastr/toastr.min.css'
+  'bower/toastr/toastr.min.css',
+  'bower/animate.css/animate.min.css',
+  'bower/angular-hotkeys/build/hotkeys.min.css'
 ];
 
 var appSrcFiles = [
@@ -173,7 +176,8 @@ gulp.task('sass', function () {
     .pipe(sass({
       errLogToConsole: true
     }))
-    .pipe(gulp.dest('./public/styles'));
+    .pipe(gulp.dest('./public/styles'))
+    .pipe(gulpIf(useLiveReload, gulpLivereload()));
 });
 
 gulp.task('vendor-css', function () {

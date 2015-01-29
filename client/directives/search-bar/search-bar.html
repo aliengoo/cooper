@@ -1,5 +1,5 @@
-<div class="search-bar" ng-show="show">
+<div class="search-bar" ng-show="show" ng-form="queryForm">
   <div class="form-group">
-    <input type="text" ng-model="query" placeholder="Start typing a query..." name="query" id="query" class="form-control" typeahead="state for state in states | filter:$viewValue | limitTo:8"/>
+    <input type="text" ng-model="query" placeholder="Search..." name="query" id="query" class="form-control input-lg" typeahead="state for state in states | filter:$viewValue | limitTo:8"/>
   </div>
 </div>
